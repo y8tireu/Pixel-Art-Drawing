@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pixel Art Drawing</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #87CEEB; /* Sky blue */
+        }
+        #game {
+            display: grid;
+            grid-template-columns: repeat(20, 30px); /* 20 blocks per row */
+            grid-auto-rows: 30px; /* Each block is 30x30px */
+            gap: 1px;
+            background-color: #333; /* Grid border */
+        }
+        .block {
+            width: 30px;
+            height: 30px;
+            background-color: #8B4513; /* Default to dirt block */
+        }
+        .grass { background-color: #228B22; } /* Grass block */
+        .stone { background-color: #808080; } /* Stone block */
+    </style>
+</head>
+<body>
+    <div id="game"></div>
+
+    <script>
+        // Game configuration
+        const rows = 20;
+        const cols = 20;
+        const gameArea = document.getElementById('game');
+
+        // Generate grid
+        for (let i = 0; i < rows * cols; i++) {
+            const block = document.createElement('div');
+            block.classList.add('block');
+            block.addEventListener('click', () => {
+                // Toggle between dirt and grass
+                if (block.classList.contains('grass')) {
+                    block.classList.remove('grass');
+                } else {
+                    block.classList.add('grass');
+                }
+            });
+            gameArea.appendChild(block);
+        }
+    </script>
+</body>
+</html>
+
